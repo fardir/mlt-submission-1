@@ -10,7 +10,7 @@ Domain proyek yang dipilih dalam proyek *machine learning* ini adalah mengenai *
 
 Penyakit kardiovaskular atau _cardiovascular disease_ (CVD) merupakan penyebab utama kematian secara global dengan korban sekitar 17,9 juta jiwa setiap tahun. CVD ialah sekelompok gangguan penyakit jantung dan pembuluh darah, termasuk penyakit jantung koroner, penyakit serebrovaskular, penyakit jantung rematik dan kondisi lainnya. Lebih dari empat dari lima kematian CVD disebabkan oleh gagal jantung dan stroke, dan sepertiga dari jumlah kematian ini terjadi sebelum waktunya pada orang di bawah usia 70 tahun [[1](https://www.who.int/en/news-room/fact-sheets/detail/cardiovascular-diseases-(cvds))]. Namun, mengingat pentingnya organ vital seperti jantung, memprediksi penyakit gagal jantung telah menjadi prioritas dibidang kesehatan, tetapi hingga saat ini dalam praktik klinis peramalan terkait gagal jantung umumnya gagal mencapai akurasi yang tinggi [[2](https://www.sciencedirect.com/science/article/abs/pii/S1053249819309738)].
 
-Pada konteks ini, rekam medis pasien dapat dianggap sebagai sumber informasi yang berguna untuk mengetahui korelasi dan hubungan yang tersembunyi dan tidak jelas antara data pasien, baik untuk penelitian maupun praktik klinis [[3](https://onlinelibrary.wiley.com/doi/full/10.1002/ehf2.12439), [4](https://www.scielo.br/j/ijcs/a/CkF7ycNBGDfFPpQgvKvByGS/?format=html&lang=en)]. Pendeteksian dini pada pasien yang mengidap CVD dan perawatan yang tepat diharapkan dapat mencegah kematian dini tersebut. Oleh karena itu, dibuat model _machine learning untuk mengklasifikasikan data rekam medis pasien untuk memprediksi kemungkinan kematian akibat gagal jantung pada masa penanganan pasien. Dengan adanya model _machine learning_ ini diharapkan dapat membantu pihak rumah sakit dalam menilai tingkat keparahan pasien dengan penyakit kardiovaskular. Implementasi model ini nantinya dapat dijalankan pada aplikasi web ataupun android.
+Pada konteks ini, rekam medis pasien dapat dianggap sebagai sumber informasi yang berguna untuk mengetahui korelasi dan hubungan yang tersembunyi dan tidak jelas antara data pasien, baik untuk penelitian maupun praktik klinis [[3](https://onlinelibrary.wiley.com/doi/full/10.1002/ehf2.12439), [4](https://www.scielo.br/j/ijcs/a/CkF7ycNBGDfFPpQgvKvByGS/?format=html&lang=en)]. Pendeteksian dini pada pasien yang mengidap CVD dan perawatan yang tepat diharapkan dapat mencegah kematian dini tersebut. Oleh karena itu, dibuat model _machine learning_ untuk mengklasifikasikan data rekam medis pasien untuk memprediksi kemungkinan kematian akibat gagal jantung pada masa penanganan pasien. Dengan adanya model _machine learning_ ini diharapkan dapat membantu pihak rumah sakit dalam menilai tingkat keparahan pasien dengan penyakit kardiovaskular. Implementasi model ini nantinya dapat dijalankan pada aplikasi web ataupun android.
 
 ## Business Understanding
 
@@ -26,7 +26,7 @@ Berikut adalah tujuan proyek ini:
 
 ### Solution statements
 Solusi untuk memenuhi tujuan dari proyek ini, di antaranya:
-* Pada tahap pra-pemrosesan daata dapat dilakukan beberapa teknik, seperti:
+* Pada tahap pra-pemrosesan data dapat dilakukan beberapa teknik, seperti:
   * Mengatasi data yang jumlahnya tidak seimbang dengan label lainnya menggunakan teknik _**resample**_.
   * Melakukan **pembagian dataset** menjadi dua bagian dengan rasio 80% untuk data latih dan 20% untuk data uji.
   * Melakukan **standarisasi data** pada semua fitur data.
@@ -88,7 +88,7 @@ Informasi dataset dapat dilihat pada tabel di bawah ini:
 | Jenis dan Ukuran berkas | CSV (12.24 kB) |
 
 
-Pada berkas yang diunduh yaitu `heart_failure_clinical_records_dataset.csv` terdapat informasi data rekam medis pasien dengan penyakit kardiovaskular dengan jumlah 299 sampel. Terdapat tujuh kolom fitur dengan data numerik (tipe data int64 dan float64) dan enam kolom fitur dengan data kategori (tipe data int64). Untuk penjelasan mengenai variabel-variabel pad data rekam medis dapt dilihat pada poin-poin berikut:
+Pada berkas yang diunduh yaitu `heart_failure_clinical_records_dataset.csv` terdapat informasi data rekam medis pasien dengan penyakit kardiovaskular dengan jumlah 299 sampel. Terdapat tujuh kolom fitur dengan data numerik (tipe data int64 dan float64) dan enam kolom fitur dengan data kategori (tipe data int64). Untuk penjelasan mengenai variabel-variabel pada data rekam medis dapat dilihat pada poin-poin berikut:
 1. `age` Umur pasien dalam satuan tahun.
 1. `anaemia` Adanya penurunan sel darah merah atau hemoglobin (nilai 1) atau tidak (nilai 0).
 1. `creatinine_phosphokinase` Kadar enzim Creatinine Phosphokinase (CPK) dalam darah dengan satuan mcg/L.
@@ -121,7 +121,7 @@ Berikut visualisasi data untuk kolom dengan fitur numerik (1, 3, 5, 7, 8, 9, 12)
 ![kolom time](./assets/dist-num-time.png)
 
 
-Berikut visualisasi data untuk kolom dengan fitur kategori (2, 4, 6, 10, 11, 13) seperti pada gambari di bawah ini:
+Berikut visualisasi data untuk kolom dengan fitur kategori (2, 4, 6, 10, 11, 13) seperti pada gambar dibawah ini:
 
 ![kolom anaemia](./assets/dist-cat-anaemia.png)
 
@@ -174,7 +174,7 @@ Seperti yang sudah dijelaskan sebelumnya pada bagian _Solution statements_, beri
   
   * Melakukan **standarisasi data** pada semua fitur data
     
-    Tahap terakhir pada proses pra-pemrosesan pada proyek ini adalah dengan melakukan standarisasi data. Proses ini bertujuan untuk mengubah semua fitur numerik kedalam skala data yang sama untuk mengoptimalkan proses komputasi model. Data pada fitur numerik tersebut diubah menjadi rentang 0-1 menggunakan fungsi [MinMaxScaler](https://scikit-learn.org/0.24/modules/generated/sklearn.preprocessing.MinMaxScaler.html#sklearn.preprocessing.MinMaxScaler) yang disediakan oleh scikit-learn. Perhitungan proses standarisasi dengan fungsi MinMaxScaler dapat dilihat pada rumus di bawah ini:
+    Tahap terakhir pada proses pra-pemrosesan pada proyek ini adalah dengan melakukan standarisasi data. Proses ini bertujuan untuk mengubah semua fitur numerik ke dalam skala data yang sama untuk mengoptimalkan proses komputasi model. Data pada fitur numerik tersebut diubah menjadi rentang 0-1 menggunakan fungsi [MinMaxScaler](https://scikit-learn.org/0.24/modules/generated/sklearn.preprocessing.MinMaxScaler.html#sklearn.preprocessing.MinMaxScaler) yang disediakan oleh scikit-learn. Perhitungan proses standarisasi dengan fungsi MinMaxScaler dapat dilihat pada rumus di bawah ini:
 
     <img width="270" src="./assets/min-max-scaler.png" alt="Rumus MinMaxScaler">
 
@@ -183,30 +183,30 @@ Seperti yang sudah dijelaskan sebelumnya pada bagian _Solution statements_, beri
 
 Setelah melalui tahap pra-pemrosesan data, selanjutnya akan dilakukan tahap _modeling_ dengan membuat model dengan dua algoritma berbeda.
 
-* Model dengan algoritme SVM
+* Model dengan algoritma SVM
 
-  Pada tahap ini, model dibuat dengan modul scikit-learn dengan nama [SVC](https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html) dengan tambahan parameter `random_state` untuk menjaga konsistensi model yang dihasilkan. Kemudian dilakukan prediksi terhadap data uji.
+  Pada tahap ini, model dibuat dengan modul scikit-learn dengan nama [SVC](https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html) dengan tambahan parameter `random_state` untuk menjaga konsistensi model yang dihasilkan. Kemudian melakukan prediksi terhadap data uji.
 
-* Model dengan algoritme Random Forest
+* Model dengan algoritma Random Forest
 
-  Model yang dikembangkan selanjutnya adalah model yang menggunakan algoritme Random Forest yang dibuat dengan modul dari scikit-learn yaitu [RandomForestClassifier](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html) dengan tambahan parameter `random_state` untuk menjaga konsistensi model yang dihasilkan. Kemudian dilakukan prediksi terhadap data uji.
+  Model yang dikembangkan selanjutnya adalah model yang menggunakan algoritma Random Forest yang dibuat dengan modul dari scikit-learn yaitu [RandomForestClassifier](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html) dengan tambahan parameter `random_state` untuk menjaga konsistensi model yang dihasilkan. Kemudian melakukan prediksi terhadap data uji.
 
 
 Hasil dari model yang  telah dibangun dapat dilihat pada tabel berikut:
 
 ![Tabel performa model](./assets/eval-model-df.png)
 
-Pada model dengan algoritme SVM nilai akurasi yang dihasilkan sudah cukup baik namun masih berisiko untuk digunakan pada data sebenarnya. Nilai _precision_, _recall_, dan _F1-score_ pada masing-masing kelas masih timpang. Namun, pada model yang dibangun dengan algoritme Random Forest, nilai akurasi, _precision_, _recall_, _F1-score_ yang dihasilkan cukup tinggi pada tiap kelas. Berikut merupakan visualisasi dengan _confusion matrix_ dari hasil prediksi masing-masing model terhadap data uji.
+Pada model dengan algoritma SVM nilai akurasi yang dihasilkan sudah cukup baik namun masih berisiko untuk digunakan pada data sebenarnya. Nilai _precision_, _recall_, dan _F1-score_ pada masing-masing kelas masih timpang. Namun, pada model yang dibangun dengan algoritma Random Forest, nilai akurasi, _precision_, _recall_, _F1-score_ yang dihasilkan cukup tinggi pada tiap kelas. Berikut merupakan visualisasi dengan _confusion matrix_ dari hasil prediksi masing-masing model terhadap data uji.
 
-* Model dengan algoritme SVM
+* Model dengan algoritma SVM
 
   ![Performa model SVM](./assets/cf-svm.png)
 
-* Model dengan algoritme Random Forest
+* Model dengan algoritma Random Forest
 
   ![Performa model Random Forest](./assets/cf-rf.png)
 
-Berdasarkan hasil di atas, maka model dengan algoritme Random Forest adalah model yang dipilih untuk digunakan.
+Berdasarkan hasil di atas, maka model dengan algoritma Random Forest adalah model yang dipilih untuk digunakan.
 
 
 ## Evaluation
